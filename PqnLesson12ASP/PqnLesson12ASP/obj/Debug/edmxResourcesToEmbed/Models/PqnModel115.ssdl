@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PhamQuangNhat_2210900115Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PqnSACH">
+    <Key>
+      <PropertyRef Name="pqnqMaSach" />
+    </Key>
+    <Property Name="pqnqMaSach" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pqnTenSach" Type="nvarchar" MaxLength="50" />
+    <Property Name="pqnSoTrang" Type="nvarchar" MaxLength="50" />
+    <Property Name="pqnNamXB" Type="nvarchar" MaxLength="50" />
+    <Property Name="pqnMaTG" Type="nvarchar" MaxLength="50" />
+    <Property Name="pqnTrangThai" Type="bit" />
+  </EntityType>
+  <EntityType Name="PqnTACGIA">
+    <Key>
+      <PropertyRef Name="PqnMaTG" />
+    </Key>
+    <Property Name="PqnMaTG" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PqnTenTacGia" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_PqnSACH_PqnTACGIA">
+    <End Role="PqnTACGIA" Type="Self.PqnTACGIA" Multiplicity="0..1" />
+    <End Role="PqnSACH" Type="Self.PqnSACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PqnTACGIA">
+        <PropertyRef Name="PqnMaTG" />
+      </Principal>
+      <Dependent Role="PqnSACH">
+        <PropertyRef Name="pqnMaTG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PhamQuangNhat_2210900115ModelStoreContainer">
+    <EntitySet Name="PqnSACH" EntityType="Self.PqnSACH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PqnTACGIA" EntityType="Self.PqnTACGIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PqnSACH_PqnTACGIA" Association="Self.FK_PqnSACH_PqnTACGIA">
+      <End Role="PqnTACGIA" EntitySet="PqnTACGIA" />
+      <End Role="PqnSACH" EntitySet="PqnSACH" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

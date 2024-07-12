@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PhamQuangNhat_2210900115Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="pqn_SACH">
+    <Key>
+      <PropertyRef Name="pqn__MaSach" />
+    </Key>
+    <Property Name="pqn__MaSach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pqn__TenSach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pqn__SoTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pqn__NamXB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pqn__MaTG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pqn__TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="pqn_TACGIA" Relationship="PhamQuangNhat_2210900115Model.FK_pqn_SACH_pqn_TACGIA" FromRole="pqn_SACH" ToRole="pqn_TACGIA" />
+  </EntityType>
+  <EntityType Name="pqn_TACGIA">
+    <Key>
+      <PropertyRef Name="pqn__MaTG" />
+    </Key>
+    <Property Name="pqn__MaTG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pqn__TenTacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="pqn_SACH" Relationship="PhamQuangNhat_2210900115Model.FK_pqn_SACH_pqn_TACGIA" FromRole="pqn_TACGIA" ToRole="pqn_SACH" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="PhamQuangNhat_2210900115Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="pqn_SACH" EntityType="Self.pqn_SACH" />
+    <EntitySet Name="pqn_TACGIA" EntityType="Self.pqn_TACGIA" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_pqn_SACH_pqn_TACGIA" Association="PhamQuangNhat_2210900115Model.FK_pqn_SACH_pqn_TACGIA">
+      <End Role="pqn_TACGIA" EntitySet="pqn_TACGIA" />
+      <End Role="pqn_SACH" EntitySet="pqn_SACH" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_pqn_SACH_pqn_TACGIA">
+    <End Type="PhamQuangNhat_2210900115Model.pqn_TACGIA" Role="pqn_TACGIA" Multiplicity="0..1" />
+    <End Type="PhamQuangNhat_2210900115Model.pqn_SACH" Role="pqn_SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pqn_TACGIA">
+        <PropertyRef Name="pqn__MaTG" />
+      </Principal>
+      <Dependent Role="pqn_SACH">
+        <PropertyRef Name="pqn__MaTG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

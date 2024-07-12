@@ -1,0 +1,58 @@
+﻿@model PqnLesson12ASP.Models.PqnSACH
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PqnSACH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pqnTenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pqnTenSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pqnSoTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pqnSoTrang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pqnNamXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pqnNamXB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pqnTrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pqnTrangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PqnTACGIA.PqnTenTacGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PqnTACGIA.PqnTenTacGia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pqnqMaSach }) |
+    @Html.ActionLink("Back to List", "PqnIndex")
+</p>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PqnLesson12ASP.Models.PqnSACH>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "PqnCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pqnTenSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pqnSoTrang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pqnNamXB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pqnTrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PqnTACGIA.PqnTenTacGia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pqnTenSach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pqnSoTrang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pqnNamXB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pqnTrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PqnTACGIA.PqnTenTacGia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "PqnEdit", new { id=item.pqnqMaSach.Trim() }) |
+            @Html.ActionLink("Details", "PqnDetails", new { id=item.pqnqMaSach.Trim() }) |
+            @Html.ActionLink("Delete", "PqnDelete", new { id=item.pqnqMaSach.Trim() })
+        </td>
+    </tr>
+}
+
+</table>
